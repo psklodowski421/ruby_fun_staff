@@ -1,4 +1,7 @@
 require 'pry'
+require_relative 'room.rb'
+require_relative 'player.rb'
+require_relative 'item.rb'
 class Dungeon
   attr_accessor :player, :hash_of_moves
 
@@ -75,61 +78,12 @@ class Dungeon
 
   def player_input(input)
     system('clear')
+    return if input.empty?
     return unless hash_of_moves.keys.to_s.include?(input)
     if hash_of_moves[input.to_i] =~ /:/
       send('go',hash_of_moves[input.to_i].sub(':', '').to_sym)
     else
       send(hash_of_moves[input.to_i])
-    end
-  end
-
-  class Player
-    attr_accessor :name, :location, :items
-
-    def initialize(player_name)
-      @name = player_name
-      @items = []
-    end
-  end
-
-  class Item
-    attr_accessor :name
-    def initialize(name)
-      @name = name
-    end
-  end
-
-  class Room
-    attr_accessor :reference, :name, :description, :connections, :item
-
-    def initialize(reference, name, description, item_name = nil, connections)
-      @reference = reference
-      @name = name
-      @description = description
-      @item = item_name.nil? ? nil : Item.new(item_name)
-      @connections = connections
-    end
-
-    def full_description
-      location_description + item_in_location + "\n\nDirections you can go: \n" + directions
-    end
-
-    def location_description
-      "################\n" + @name + "\n\nYou are in " + @description
-    end
-
-    def item_in_location
-      @item.nil? ? '' : "\n\nFOUND ITEM: " + @item.name
-    end
-
-    def directions
-      @connections.map { |key, value| "#{key.to_s.capitalize} -> #{value.to_s.capitalize}\n" }.flatten.join
-    end
-
-    def pick
-      current_item = item.dup
-      @item = nil
-      current_item
     end
   end
 
