@@ -1,7 +1,7 @@
 require 'pry'
-require_relative 'room.rb'
-require_relative 'player.rb'
-require_relative 'item.rb'
+require_relative 'room'
+require_relative 'player'
+require_relative 'item'
 class Dungeon
   attr_accessor :player, :hash_of_moves
 
