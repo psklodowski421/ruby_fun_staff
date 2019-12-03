@@ -1,4 +1,4 @@
-# ruby_fun_staff
+# Ruby fun staff
 
 
 dungeon.rb - simple game made in ruby
