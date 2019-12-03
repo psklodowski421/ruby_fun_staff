@@ -1,7 +1,7 @@
 # Ruby fun staff
 
 
-dungeon.rb - simple game made in ruby
+dungeon.rb - simple text game made in ruby
 
 read_measure.rb - show statistics of your learning procces of reading programming books
 
